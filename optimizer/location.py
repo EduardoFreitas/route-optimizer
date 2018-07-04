@@ -1,8 +1,8 @@
-from point import Point
+from optimizer.point import Point
 import math
 
 
-class City(object):
+class Location(object):
 
     def __init__(self, latitude, longitude, name):
         self.location = Point(latitude, longitude)
