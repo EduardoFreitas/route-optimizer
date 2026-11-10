@@ -1,5 +1,7 @@
 import json
 import random
+from pathlib import Path
+
 import simplekml
 
 from optimizer.location import Location
@@ -26,7 +28,7 @@ if __name__ == '__main__':
 
     kml = simplekml.Kml()
 
-    with open('data.json', encoding="utf8") as f:
+    with Path(__file__).with_name('data.json').open(encoding="utf8") as f:
         data = json.load(f)
 
     lowest = {}
@@ -64,5 +66,5 @@ if __name__ == '__main__':
     for c in optimize.locations_ordered:
         newarray.append((c.location.longitude, c.location.latitude))
         print(c)
-    kml.newlinestring(name="Pathway", description="Best Route", coords=newarray)
+    kml.newlinestring(name="Pathway", description="Heuristic route", coords=newarray)
     kml.save("optimize.kml")
